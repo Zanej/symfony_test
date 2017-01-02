@@ -1,0 +1,7 @@
+contents_homepage:
+    path:     /articms/admin/
+    defaults: { _controller: contentsBundle:Default:index }
+contents_login:
+    path:     /articms/login/
+    defaults: { _controller: contentsBundle:Default:login }
+

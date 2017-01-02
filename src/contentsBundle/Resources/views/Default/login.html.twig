@@ -1,0 +1,49 @@
+{% set page = 'login' %}
+{% extends "contentsBundle:Default:default.html.twig" %}
+{%block header %}
+{% endblock %}
+
+{% block content %}
+    
+    <div class='contieni'>
+        <div class='log_pop'>
+            
+            <div class='log_cont'>
+                
+                <div class='img_cont'>
+                    <img src='/images/android_logo-1.png'/>
+                </div>
+                
+                <form action="/articms/login/" method="POST" id="login_form">
+                    <div class='box_input'>
+                        <label for='email'>
+                            Email
+                        </label>
+
+                        <div class='input_cont'>
+                            <input type='email' name='email'/>
+                        </div>
+                    </div>
+
+                    <div class='box_input'>
+                        <label for='password'>
+                            Password
+                        </label>
+
+                        <div class='input_cont'>
+                            <input type='password' name='password'/>
+                        </div>
+                    </div>
+
+                    <div class='box_input submit'>
+                        <div class='input_cont'>
+                            <input type='submit' class='btn btn-primary' value='Login'/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+       

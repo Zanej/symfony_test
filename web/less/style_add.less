@@ -1,0 +1,127 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31-dic-2016, 19.04.09
+    Author     : zane2
+*/
+body{
+    
+    &#login{
+        background-color:#F5F5F5;
+        
+        .right_col{
+            min-height: auto !important;
+        }
+    }
+    .contieni{
+        
+        background-color:#F5F5F5;
+        
+        position:absolute;
+        top:5%;
+        bottom:5%;
+        width:100%;
+        margin:0;
+        padding:0;
+        
+        @media(max-width: 768px){
+            position:initial;
+            float:left;
+            width:100%;
+        }
+        
+        .log_pop{
+            
+            
+            width:500px; 
+            margin: 0 auto; 
+            
+            @media(max-width: 768px){
+                float:left;
+                width:100%;
+            }                        
+            
+            .log_cont{
+                float:left;
+                width:100%;
+                /*background: #00A677; /* For browsers that do not support gradients */
+                /*background: -webkit-linear-gradient(270deg,#00A677, #00838F,#00A677); /* For Safari 5.1 to 6.0 */
+/*                background: -o-linear-gradient(270deg,#00A677, #00838F,#00A677);  For Opera 11.1 to 12.0 
+                background: -moz-linear-gradient(270deg,#00A677, #00838F,#00A677);  For Firefox 3.6 to 15 
+                background: linear-gradient(270deg,#00A677, #00838F,#00A677);  Standard syntax */
+                /*background-color:#EEE;*/
+                padding:30px 0;
+                
+                .img_cont{
+                    float:left;
+                    width:100%;
+                    padding:15px 0;
+                    
+                    img{
+                        padding:0 5%;
+                        max-width:100%;
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    .box_input{
+        float:left;
+        width:100%;
+        padding:5px 5%;
+        
+        &.submit{
+            margin-top:40px;
+        }
+        
+        label{
+            margin:5px 0;
+            font-size:14px;
+            color:#212121;
+        }
+        .input_cont{
+            
+            border:none;
+            outline:none;
+            color:#FFF;
+            
+            input{
+                
+                color:#212121;
+                
+                border:none;
+                outline:none;
+                appearance: none;
+                -webkit-appearance: none;
+                width:100%;
+                padding:10px 5px;
+                
+                &:not([type='submit']){
+                    
+                    &:hover, &:focus{
+                        outline:2px solid #009688;
+                    }
+                }
+                
+                &[type='submit']{
+                    
+                    width:auto;
+                    padding:10px 40px;
+                    color:#FFF;
+                    
+                    margin:0 auto;
+                    
+                    &:hover, &:focus{
+                        
+                        background-color: #009688;
+                    }
+                }
+            }
+        }
+    }
+}
