@@ -4,4 +4,19 @@ contents_homepage:
 contents_login:
     path:     /articms/login/
     defaults: { _controller: contentsBundle:Default:login }
+contents_list:
+    path:     /articms/list/{sezione}
+    defaults: { _controller: contentsBundle:Default:list }
+    requirements:
+        sezione:'\d+'
+user_img:
+#    path:   /articms/admin/users_images/dennis_zanetti-100_100_1/
+    path:   /articms/admin/users_images/{name}-{width}-{height}-{id_utente}/
+#    defaults: { _controller: contentsBundle:user:img, name: "dennis", width: 100, height: 100, id_utente: 1 }
+    defaults: { _controller: contentsBundle:user:img, width: 100, height: 100, id_utente: 1}
+    requirements:
+        name: '[a-z_]+'
+        width: '\d+'
+        height: '\d+'
+        id: '\d+'
 

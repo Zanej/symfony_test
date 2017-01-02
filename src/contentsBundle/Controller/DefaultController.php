@@ -3,6 +3,7 @@
 namespace contentsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class DefaultController extends Controller
 {
@@ -17,7 +18,44 @@ class DefaultController extends Controller
             return $this->loginAction();            
         }        
         
-        return $this->render('contentsBundle:Default:index.html.twig');
+        //Ottengo il token dell'utente attualmente loggato
+        
+        $session = $this->get('session');
+        $token = unserialize($session->get('_security_'.'main'));
+        
+        //Username dell'utente attualmente loggato
+        $username = $token->getUsername();
+        
+        //Repository utenti
+        $repository_users = $this->getDoctrine()->getRepository("contentsBundle:user");
+        
+        /*
+         * @var contentsBundle\Entity\User $utente;
+         */
+        $utente = $repository_users->findOneBy(array("username"=>$username));
+                
+        //Trovo le sezioni abilitate
+        $sezioni = $utente->getSezioni($this->getDoctrine());
+        $sezioni_gruppi_sez = array();
+        $sezioni_gruppi = array();
+        
+        foreach($sezioni as $kt => $vt){
+            
+            $index_gruppo = $vt->getIdGruppo()->getId();
+            if(! isset( $sezioni_gruppi[$index_gruppo] )){
+                                
+                $sezioni_gruppi[$index_gruppo] = $vt->getIdGruppo();                
+                $sezioni_gruppi_sez[$index_gruppo] = array();
+            }
+            
+            $sezioni_gruppi_sez[$index_gruppo][] = $vt;            
+        }
+        
+//        print_r($sezioni_gruppi_sez);
+                
+        
+        return $this->render('contentsBundle:Default:index.html.twig',
+                array("sezioni_gruppi"=>$sezioni_gruppi, "sezioni_gruppi_sez"=>$sezioni_gruppi_sez, "user" => $utente));
     }
 
     public function loginAction(){
@@ -46,7 +84,7 @@ class DefaultController extends Controller
             //Se è presente continuo
             
             //Token di accesso
-            $token = new \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken($user->getUsername(), $password, 'main', array('ROLE_ADMIN'));            
+            $token = new UsernamePasswordToken($user->getUsername(), $password, 'main', array('ROLE_ADMIN'));            
             
             //print_r($session);
             //echo serialize($token);

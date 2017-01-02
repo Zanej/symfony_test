@@ -100,4 +100,8 @@ body .box_input .input_cont input[type='submit']:hover,
 body .box_input .input_cont input[type='submit']:focus {
   background-color: #009688;
 }
+body #sidebar-menu .menu_section {
+  float: left;
+  width: 100%;
+}
 /*# sourceMappingURL=style_add.css.map */

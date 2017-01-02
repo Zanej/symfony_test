@@ -1,0 +1,17 @@
+contentsBundle\Entity\confSezioniGruppi:
+    type: entity
+    table: null
+    repositoryClass: contentsBundle\Repository\confSezioniGruppiRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titolo:
+            type: string
+            length: 255
+        stato:
+            type: boolean
+    lifecycleCallbacks: {  }

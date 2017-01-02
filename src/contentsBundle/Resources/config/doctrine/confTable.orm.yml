@@ -1,0 +1,31 @@
+contentsBundle\Entity\confTable:
+    type: entity
+    table: null
+    repositoryClass: contentsBundle\Repository\confTableRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        field:
+            type: string
+            length: '255'
+        name:
+            type: string
+            length: 255
+        comment:
+            type: blob
+            nullable: true
+        stato:
+            type: boolean
+            nullable: false
+          
+    manyToOne:
+        idSezione:
+          targetEntity: confSezioni
+          joinColumn:
+            name: id_sezione
+            referencedColumnName: id_sezione
+    lifecycleCallbacks: {  }

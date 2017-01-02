@@ -1,4 +1,12 @@
 services:
+#    contents.usercontroller:
+#        class: contentsBundle\Entity\User
+##        calls:
+##            - [setContainer, ['@service_container']]
+#        arguments: ["@service_container"]
+        #calls:
+            #- [setContainer, ["@service_container"]]
+        
 #    contents.example:
 #        class: contentsBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]

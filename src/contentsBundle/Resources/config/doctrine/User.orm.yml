@@ -1,0 +1,28 @@
+contentsBundle\Entity\User:
+    type: entity
+    table: fos_user
+    repositoryClass: contentsBundle\Repository\userRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:        
+        livello:
+            type: integer
+            nullable: false
+        nome:
+            type: string
+            length: 255
+            nullable: false
+        cognome:
+            type: string
+            length: 255
+            nullable: false
+        url_img:
+            type: string
+            length: 255
+            nullable: true
+            
+    lifecycleCallbacks: {  }

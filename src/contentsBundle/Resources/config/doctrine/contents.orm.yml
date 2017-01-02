@@ -1,0 +1,197 @@
+contentsBundle\Entity\contents:
+    type: entity
+    table: null
+    repositoryClass: contentsBundle\Repository\contentsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:        
+        campo1:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_1
+        campo2:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_2
+        campo3:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_3
+        campo4:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_4
+        campo5:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_5
+        campo6:
+            type: integer
+            nullable: true
+            column: campo_6
+        campo7:
+            type: integer
+            nullable: true
+            column: campo_7
+        campo8:
+            type: integer
+            nullable: true
+            column: campo_8
+        campo9:
+            type: integer
+            nullable: true
+            column: campo_9
+        campo10:
+            type: integer
+            nullable: true
+            column: campo_10
+        campo11:
+            type: blob
+            nullable: true
+            column: campo_11
+        campo12:
+            type: blob
+            nullable: true
+            column: campo_12
+        campo13:
+            type: blob
+            nullable: true
+            column: campo_13
+        campo14:
+            type: blob
+            nullable: true
+            column: campo_14
+        campo15:
+            type: blob
+            nullable: true
+            column: campo_15
+        campo16:
+            type: datetime
+            nullable: true
+            column: campo_16
+        campo17:
+            type: datetime
+            nullable: true
+            column: campo_17
+        campo18:
+            type: datetime
+            nullable: true
+            column: campo_18
+        campo19:
+            type: datetime
+            nullable: true
+            column: campo_19
+        campo20:
+            type: datetime
+            nullable: true
+            column: campo_20
+        campo21:
+            type: float
+            nullable: true
+            column: campo_21
+        campo22:
+            type: float
+            nullable: true
+            column: campo_22
+        campo23:
+            type: float
+            nullable: true
+            column: campo_23
+        campo24:
+            type: time
+            nullable: true
+            column: campo_24
+        campo25:
+            type: time
+            nullable: true
+            column: campo_25
+        campo26:
+            type: time
+            nullable: true
+            column: campo_26
+        campo27:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_27
+        campo28:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_28
+        campo29:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_29
+        campo30:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_30
+        campo31:
+            type: string
+            length: 255
+            nullable: true
+            column: campo_31
+        campo32:
+            type: smallint
+            nullable: true
+            column: campo_32
+        campo33:
+            type: smallint
+            nullable: true
+            column: campo_33
+        campo34:
+            type: smallint
+            nullable: true
+            column: campo_34
+        campo35:
+            type: smallint
+            nullable: true
+            column: campo_35
+        campo36:
+            type: array
+            nullable: true
+            column: campo_36
+        campo37:
+            type: array
+            nullable: true
+            column: campo_37
+        campo38:
+            type: array
+            nullable: true
+            column: campo_38
+        campo39:
+            type: boolean
+            nullable: true
+            column: campo_39
+        campo40:
+            type: boolean
+            nullable: true
+            column: campo_40
+        campo41:
+            type: boolean
+            nullable: true
+            column: campo_41
+        campo42:
+            type: boolean
+            nullable: true
+            column: campo_42
+    manyToOne:
+        idSezione:
+          targetEntity: confSezioni
+          joinColumn:
+            name: id_sezione
+            referencedColumnName: id_sezione
+        
+    lifecycleCallbacks: {  }

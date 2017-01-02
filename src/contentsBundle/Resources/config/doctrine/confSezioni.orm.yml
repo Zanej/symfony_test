@@ -1,0 +1,70 @@
+contentsBundle\Entity\confSezioni:
+    type: entity
+    table: conf_sezioni
+    id:
+        idSezione:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_sezione
+            generator:
+                strategy: IDENTITY
+    fields:
+        livello:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        titolo:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false        
+        linkPreview:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: link_preview
+        fieldPreview:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: field_preview
+        keyField:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: key_field
+        tabella:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        box:
+            type: boolean
+            nullable: false
+            options:
+                unsigned: false
+        ordine:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                default: 0
+    manyToOne:
+        idGruppo:
+          targetEntity: confSezioniGruppi
+          joinColumn:
+            name: id_gruppo
+            referencedColumnName: id
+    lifecycleCallbacks: {  }
