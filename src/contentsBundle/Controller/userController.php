@@ -31,7 +31,7 @@ class userController extends Controller{
         $repository_s = $doctrine->getRepository('contentsBundle:confSezioni');
         
         //print_r($repository_s);
-        return $repository_s->findBy(array("livello"=>$livello), array("ordine"=>"ASC"));
+        return $repository_s->findBy(array("livello"=>$livello,"stato"=>1), array("ordine"=>"ASC"));
     }
     
     /**

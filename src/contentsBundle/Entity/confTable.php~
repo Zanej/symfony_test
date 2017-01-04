@@ -36,6 +36,15 @@ class confTable
      * @var boolean
      */
     private $stato;
+    /**
+     * @var boolean
+     */
+    private $view_scheda;
+
+    /**
+     * @var boolean
+     */
+    private $view_frontend;
     
     /**
      * Get id
@@ -161,5 +170,141 @@ class confTable
     {
         $this->stato = $stato;
     }
-}
+    
 
+
+    /**
+     * Set viewScheda
+     *
+     * @param boolean $viewScheda
+     *
+     * @return confTable
+     */
+    public function setViewScheda($viewScheda)
+    {
+        $this->view_scheda = $viewScheda;
+
+        return $this;
+    }
+
+    /**
+     * Get viewScheda
+     *
+     * @return boolean
+     */
+    public function getViewScheda()
+    {
+        return $this->view_scheda;
+    }
+
+    /**
+     * Set viewFrontend
+     *
+     * @param boolean $viewFrontend
+     *
+     * @return confTable
+     */
+    public function setViewFrontend($viewFrontend)
+    {
+        $this->view_frontend = $viewFrontend;
+
+        return $this;
+    }
+
+    /**
+     * Get viewFrontend
+     *
+     * @return boolean
+     */
+    public function getViewFrontend()
+    {
+        return $this->view_frontend;
+    }
+    /**
+     * @var integer
+     */
+    private $ordine;
+
+
+    /**
+     * Set ordine
+     *
+     * @param integer $ordine
+     *
+     * @return confTable
+     */
+    public function setOrdine($ordine)
+    {
+        $this->ordine = $ordine;
+
+        return $this;
+    }
+
+    /**
+     * Get ordine
+     *
+     * @return integer
+     */
+    public function getOrdine()
+    {
+        return $this->ordine;
+    }
+    /**
+     * @var boolean
+     */
+    private $view_detail;
+
+
+    /**
+     * Set viewDetail
+     *
+     * @param boolean $viewDetail
+     *
+     * @return confTable
+     */
+    public function setViewDetail($viewDetail)
+    {
+        $this->view_detail = $viewDetail;
+
+        return $this;
+    }
+
+    /**
+     * Get viewDetail
+     *
+     * @return boolean
+     */
+    public function getViewDetail()
+    {
+        return $this->view_detail;
+    }
+    /**
+     * @var integer
+     */
+    private $length_detail;
+
+
+    /**
+     * Set lengthDetail
+     *
+     * @param integer $lengthDetail
+     *
+     * @return confTable
+     */
+    public function setLengthDetail($lengthDetail)
+    {
+        $this->length_detail = $lengthDetail;
+
+        return $this;
+    }
+
+    /**
+     * Get lengthDetail
+     *
+     * @return integer
+     */
+    public function getLengthDetail()
+    {
+        return $this->length_detail;
+    }
+}

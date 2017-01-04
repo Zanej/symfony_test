@@ -69,16 +69,32 @@ class confSezioni
      * @ORM\Column(name="tabella", type="string", length=255, nullable=false)
      */
     private $tabella;
-
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="bundle", type="string", length=255, nullable=false)
+     */
+    private $bundle;
+    
     /**
      * @var integer
      *
-     * @ORM\Column(name="box", type="smallint", nullable=false)
+     * @ORM\Column(name="box", type="boolean", nullable=false)
      */
     private $box;
-
-
+    
+    /**
+     *
+     * @var stato
+     * 
+     * @ORM\Column(name="stato", type="boolean", nullable = false)
+     */
+    private $stato;
+    
     private $ordine;
+    
+    private $per_page;
     
     /**
      * Get idSezione
@@ -304,5 +320,193 @@ class confSezioni
     public function getOrdine()
     {
         return $this->ordine;
+    }
+
+    /**
+     * Set stato
+     *
+     * @param boolean $stato
+     *
+     * @return confSezioni
+     */
+    public function setStato($stato)
+    {
+        $this->stato = $stato;
+
+        return $this;
+    }
+
+    /**
+     * Get stato
+     *
+     * @return boolean
+     */
+    public function getStato()
+    {
+        return $this->stato;
+    }
+
+    /**
+     * Set bundle
+     *
+     * @param string $bundle
+     *
+     * @return confSezioni
+     */
+    public function setBundle($bundle)
+    {
+        $this->bundle = $bundle;
+
+        return $this;
+    }
+
+    /**
+     * Get bundle
+     *
+     * @return string
+     */
+    public function getBundle()
+    {
+        return $this->bundle;
+    }
+
+    /**
+     * Set perPage
+     *
+     * @param integer $perPage
+     *
+     * @return confSezioni
+     */
+    public function setPerPage($perPage)
+    {
+        $this->per_page = $perPage;
+
+        return $this;
+    }
+
+    /**
+     * Get perPage
+     *
+     * @return integer
+     */
+    public function getPerPage()
+    {
+        return $this->per_page;
+    }
+    /**
+     * @var boolean
+     */
+    private $edit;
+
+    /**
+     * @var boolean
+     */
+    private $remove;
+
+    /**
+     * @var boolean
+     */
+    private $insert;
+
+    /**
+     * @var boolean
+     */
+    private $stato_abilitato;
+
+
+    /**
+     * Set edit
+     *
+     * @param boolean $edit
+     *
+     * @return confSezioni
+     */
+    public function setEdit($edit)
+    {
+        $this->edit = $edit;
+
+        return $this;
+    }
+
+    /**
+     * Get edit
+     *
+     * @return boolean
+     */
+    public function getEdit()
+    {
+        return $this->edit;
+    }
+
+    /**
+     * Set remove
+     *
+     * @param boolean $remove
+     *
+     * @return confSezioni
+     */
+    public function setRemove($remove)
+    {
+        $this->remove = $remove;
+
+        return $this;
+    }
+
+    /**
+     * Get remove
+     *
+     * @return boolean
+     */
+    public function getRemove()
+    {
+        return $this->remove;
+    }
+
+    /**
+     * Set insert
+     *
+     * @param boolean $insert
+     *
+     * @return confSezioni
+     */
+    public function setInsert($insert)
+    {
+        $this->insert = $insert;
+
+        return $this;
+    }
+
+    /**
+     * Get insert
+     *
+     * @return boolean
+     */
+    public function getInsert()
+    {
+        return $this->insert;
+    }
+
+    /**
+     * Set statoAbilitato
+     *
+     * @param boolean $statoAbilitato
+     *
+     * @return confSezioni
+     */
+    public function setStatoAbilitato($statoAbilitato)
+    {
+        $this->stato_abilitato = $statoAbilitato;
+
+        return $this;
+    }
+
+    /**
+     * Get statoAbilitato
+     *
+     * @return boolean
+     */
+    public function getStatoAbilitato()
+    {
+        return $this->stato_abilitato;
     }
 }

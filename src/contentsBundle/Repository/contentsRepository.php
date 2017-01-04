@@ -10,4 +10,8 @@ namespace contentsBundle\Repository;
  */
 class contentsRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function fieldExists($fieldname){
+        
+        return $this->_class->hasField($fieldname);
+    }
 }

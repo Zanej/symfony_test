@@ -104,4 +104,11 @@ body #sidebar-menu .menu_section {
   float: left;
   width: 100%;
 }
+body .x_panel .x_title {
+  float: left;
+  width: 100%;
+}
+body .x_panel .x_content table.table tbody tr td p {
+  margin: 7px 0;
+}
 /*# sourceMappingURL=style_add.css.map */

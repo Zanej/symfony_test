@@ -81,4 +81,3 @@ class confSezioniGruppi
         return $this->stato;
     }
 }
-

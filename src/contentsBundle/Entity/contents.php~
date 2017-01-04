@@ -7,6 +7,12 @@ namespace contentsBundle\Entity;
  */
 class contents
 {
+    
+    public function __call($closure, $args)
+    {
+        return call_user_func_array($this->{$closure}->bindTo($this),$args);
+    }
+    
     /**
      * @var int
      */
@@ -226,8 +232,15 @@ class contents
      * @var bool
      */
     private $campo42;
-
-
+    
+    /**
+     *
+     * @var bool
+     */
+    private $stato;
+    
+    private $ordine;
+    
     /**
      * Get id
      *
@@ -1269,5 +1282,52 @@ class contents
     {
         return $this->campo42;
     }
-}
 
+    /**
+     * Set stato
+     *
+     * @param boolean $stato
+     *
+     * @return contents
+     */
+    public function setStato($stato)
+    {
+        $this->stato = $stato;
+
+        return $this;
+    }
+
+    /**
+     * Get stato
+     *
+     * @return boolean
+     */
+    public function getStato()
+    {
+        return $this->stato;
+    }
+
+    /**
+     * Set ordine
+     *
+     * @param integer $ordine
+     *
+     * @return contents
+     */
+    public function setOrdine($ordine)
+    {
+        $this->ordine = $ordine;
+
+        return $this;
+    }
+
+    /**
+     * Get ordine
+     *
+     * @return integer
+     */
+    public function getOrdine()
+    {
+        return $this->ordine;
+    }
+}

@@ -16,12 +16,32 @@ contentsBundle\Entity\confTable:
             type: string
             length: 255
         comment:
-            type: blob
+            type: text
             nullable: true
         stato:
             type: boolean
             nullable: false
-          
+        view_scheda:
+            default: 1
+            type: boolean
+            nullable: false
+        view_frontend:
+            default: 1
+            type: boolean
+            nullable: false
+        view_detail:
+            default: 1
+            type: boolean
+            nullable: true   
+        length_detail:            
+            type: integer
+            length: 7
+            nullable: true            
+        ordine:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
     manyToOne:
         idSezione:
           targetEntity: confSezioni

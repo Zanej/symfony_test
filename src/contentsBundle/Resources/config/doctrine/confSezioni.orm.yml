@@ -50,11 +50,50 @@ contentsBundle\Entity\confSezioni:
             length: 255
             options:
                 fixed: false
+        bundle:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
         box:
             type: boolean
             nullable: false
             options:
                 unsigned: false
+        edit:
+            type: boolean
+            nullable: false
+            options:
+                unsigned: false
+        remove:
+            type: boolean
+            nullable: false
+            options:
+                unsigned: false
+        insert:
+            type: boolean
+            nullable: false
+            options:
+                unsigned: false
+                
+        stato_abilitato:
+            type: boolean
+            nullable: false
+            options:
+                unsigned: false
+        stato:
+            type: boolean
+            nullable: false
+            default: 1
+            options:
+                unsigned: false
+        per_page:
+            type: integer
+            nullable: false
+            default: 10
+            options:
+                unsigned: true
         ordine:
             type: integer
             nullable: false

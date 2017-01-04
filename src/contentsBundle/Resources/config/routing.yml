@@ -8,7 +8,14 @@ contents_list:
     path:     /articms/list/{sezione}
     defaults: { _controller: contentsBundle:Default:list }
     requirements:
-        sezione:'\d+'
+        sezione: '\d+'
+contents_lock:
+    path:     /articms/lock/{sezione}/{$id_content}/
+    defaults: { _controller: contentsBundle:Default:cambiaStato , stato: 0}
+contents_unlock:
+    path:     /articms/unlock/{sezione}/{$id_content}/
+    defaults: { _controller: contentsBundle:Default:cambiaStato , stato: 1}
+    
 user_img:
 #    path:   /articms/admin/users_images/dennis_zanetti-100_100_1/
     path:   /articms/admin/users_images/{name}-{width}-{height}-{id_utente}/

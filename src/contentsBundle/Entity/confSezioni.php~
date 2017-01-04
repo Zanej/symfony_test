@@ -69,16 +69,32 @@ class confSezioni
      * @ORM\Column(name="tabella", type="string", length=255, nullable=false)
      */
     private $tabella;
-
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="bundle", type="string", length=255, nullable=false)
+     */
+    private $bundle;
+    
     /**
      * @var integer
      *
-     * @ORM\Column(name="box", type="smallint", nullable=false)
+     * @ORM\Column(name="box", type="boolean", nullable=false)
      */
     private $box;
-
-
+    
+    /**
+     *
+     * @var stato
+     * 
+     * @ORM\Column(name="stato", type="boolean", nullable = false)
+     */
+    private $stato;
+    
     private $ordine;
+    
+    private $per_page;
     
     /**
      * Get idSezione
@@ -304,5 +320,77 @@ class confSezioni
     public function getOrdine()
     {
         return $this->ordine;
+    }
+
+    /**
+     * Set stato
+     *
+     * @param boolean $stato
+     *
+     * @return confSezioni
+     */
+    public function setStato($stato)
+    {
+        $this->stato = $stato;
+
+        return $this;
+    }
+
+    /**
+     * Get stato
+     *
+     * @return boolean
+     */
+    public function getStato()
+    {
+        return $this->stato;
+    }
+
+    /**
+     * Set bundle
+     *
+     * @param string $bundle
+     *
+     * @return confSezioni
+     */
+    public function setBundle($bundle)
+    {
+        $this->bundle = $bundle;
+
+        return $this;
+    }
+
+    /**
+     * Get bundle
+     *
+     * @return string
+     */
+    public function getBundle()
+    {
+        return $this->bundle;
+    }
+
+    /**
+     * Set perPage
+     *
+     * @param integer $perPage
+     *
+     * @return confSezioni
+     */
+    public function setPerPage($perPage)
+    {
+        $this->per_page = $perPage;
+
+        return $this;
+    }
+
+    /**
+     * Get perPage
+     *
+     * @return integer
+     */
+    public function getPerPage()
+    {
+        return $this->per_page;
     }
 }

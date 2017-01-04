@@ -55,23 +55,23 @@ contentsBundle\Entity\contents:
             nullable: true
             column: campo_10
         campo11:
-            type: blob
+            type: text
             nullable: true
             column: campo_11
         campo12:
-            type: blob
+            type: text
             nullable: true
             column: campo_12
         campo13:
-            type: blob
+            type: text
             nullable: true
             column: campo_13
         campo14:
-            type: blob
+            type: text
             nullable: true
             column: campo_14
         campo15:
-            type: blob
+            type: text
             nullable: true
             column: campo_15
         campo16:
@@ -187,6 +187,15 @@ contentsBundle\Entity\contents:
             type: boolean
             nullable: true
             column: campo_42
+        stato:
+            type: boolean
+            nullable: false
+            default: 1
+        ordine:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
     manyToOne:
         idSezione:
           targetEntity: confSezioni

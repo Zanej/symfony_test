@@ -51,7 +51,7 @@ class User extends BaseUser
     public function getSezioni($doc){
                 
         //Ottengo il controller degli utenti        
-        $controller = new userController( (Object) array());
+        $controller = new userController();
         
         //Ottengo le sezioni per il livello dell'utente
         return $controller->getSezioni($doc, $this->getLivello());
@@ -105,5 +105,58 @@ class User extends BaseUser
     public function getCognome()
     {
         return $this->cognome;
+    }
+    
+    /**
+     * Returns name and surname
+     * @return string
+     */
+    public function getNomeCognome(){
+        return $this->nome." ".$this->cognome;
+    }
+
+    /**
+     * Set urlImg
+     *
+     * @param string $urlImg
+     *
+     * @return User
+     */
+    public function setUrlImg($urlImg)
+    {
+        $this->url_img = $urlImg;
+
+        return $this;
+    }
+
+    /**
+     * Get urlImg
+     *
+     * @return string
+     */
+    public function getUrlImg()
+    {
+        return $this->url_img;
+    }
+    
+    /**
+     * Ritorna il link rewrite delle immagini
+     * @param integer $width
+     * @param integer $height
+     * @return link
+     */
+    public function getUrlImgRewrite($width = 200, $height = 200){
+        
+        $name = $this->getNomeCognome();
+        $id_utente = $this->getId();        
+        
+        $file_trovato = $_SERVER['DOCUMENT_ROOT']."/img_users/".$id_utente."/".$this->getUrlImg();
+
+        if(file_exists($file_trovato)){
+            
+            return "/articms/admin/users_images/".strtolower(str_replace(" ","",$name))."-".$width."-".$height."-".$id_utente."/";
+        }
+            
+        return "/images/img.php"; 
     }
 }

@@ -34,8 +34,8 @@
                                 <i class="fa fa-desktop"></i> {{gruppi.titolo}} <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     {% for sezioni in sezioni_gruppi_sez[gruppi.getId()] %}
-                                        <li>
-                                            <a href="javascript:void(0);">
+                                        <li  {% if sez_sel and sez_sel.getIdSezione() == sezioni.getIdSezione() %} class='current_page' {% endif %}>
+                                            <a href="/articms/list/{{sezioni.getIdSezione()}}">
                                                 {{sezioni.titolo}}
                                             </a>
                                         </li>

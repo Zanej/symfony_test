@@ -28,3 +28,19 @@ $(document).on("submit", "#login_form", function(e){
     
     return false;
 });
+
+$(document).on("click", ".ajax_call", function(e){
+    e.preventDefault();
+    var href = $(this).prop("href");
+    $.ajax({
+        url:href,
+        success:function(data){
+            
+        },
+        error:function(data){
+            
+        }
+    });
+    
+    return false;
+});
