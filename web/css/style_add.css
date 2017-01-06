@@ -13,6 +13,51 @@ body#login {
 body#login .right_col {
   min-height: auto !important;
 }
+@media (max-width: 768px) {
+  body#edit #edit_elem table.table {
+    display: block;
+  }
+  body#edit #edit_elem table.table tr {
+    float: left;
+    width: 100%;
+    display: block;
+    border: none;
+  }
+  body#edit #edit_elem table.table tr td {
+    float: left;
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+  }
+  body#edit #edit_elem table.table tr td p {
+    padding: 0 5%;
+  }
+}
+body#edit #edit_elem td {
+  vertical-align: middle;
+  border: none;
+}
+body#edit #edit_elem tr td:first-child {
+  width: 20%;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  body#edit #edit_elem tr td:first-child {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+body#edit #edit_elem .box_input .input_cont input,
+body#edit #edit_elem .box_input .input_cont textarea {
+  border: 1px solid #ddd;
+}
+body#edit #edit_elem .box_input.submit input {
+  float: right;
+}
+body#edit .x_title {
+  border-bottom: none;
+}
 body .contieni {
   background-color: #F5F5F5;
   position: absolute;
@@ -76,8 +121,26 @@ body .box_input .input_cont {
   border: none;
   outline: none;
   color: #FFF;
+  padding: 0;
+  margin: 0;
 }
-body .box_input .input_cont input {
+body .box_input .input_cont .select2-selection__rendered:hover {
+  color: #009688;
+}
+body .box_input .input_cont .radios label {
+  padding: 0 5px;
+  font-size: 13px;
+  color: #000;
+  font-weight: normal;
+}
+body .box_input .input_cont .radios label:hover {
+  color: #009688;
+}
+body .box_input .input_cont input[type='text'],
+body .box_input .input_cont input[type='date'],
+body .box_input .input_cont input[type='submit'],
+body .box_input .input_cont textarea,
+body .box_input .input_cont select {
   color: #212121;
   border: none;
   outline: none;
@@ -86,19 +149,42 @@ body .box_input .input_cont input {
   width: 100%;
   padding: 10px 5px;
 }
-body .box_input .input_cont input:not([type='submit']):hover,
-body .box_input .input_cont input:not([type='submit']):focus {
+body .box_input .input_cont input[type='text']:not([type='submit']):hover,
+body .box_input .input_cont input[type='date']:not([type='submit']):hover,
+body .box_input .input_cont input[type='submit']:not([type='submit']):hover,
+body .box_input .input_cont textarea:not([type='submit']):hover,
+body .box_input .input_cont select:not([type='submit']):hover,
+body .box_input .input_cont input[type='text']:not([type='submit']):focus,
+body .box_input .input_cont input[type='date']:not([type='submit']):focus,
+body .box_input .input_cont input[type='submit']:not([type='submit']):focus,
+body .box_input .input_cont textarea:not([type='submit']):focus,
+body .box_input .input_cont select:not([type='submit']):focus {
   outline: 2px solid #009688;
 }
-body .box_input .input_cont input[type='submit'] {
+body .box_input .input_cont input[type='text'][type='submit'],
+body .box_input .input_cont input[type='date'][type='submit'],
+body .box_input .input_cont input[type='submit'][type='submit'],
+body .box_input .input_cont textarea[type='submit'],
+body .box_input .input_cont select[type='submit'] {
   width: auto;
   padding: 10px 40px;
   color: #FFF;
   margin: 0 auto;
 }
-body .box_input .input_cont input[type='submit']:hover,
-body .box_input .input_cont input[type='submit']:focus {
+body .box_input .input_cont input[type='text'][type='submit']:hover,
+body .box_input .input_cont input[type='date'][type='submit']:hover,
+body .box_input .input_cont input[type='submit'][type='submit']:hover,
+body .box_input .input_cont textarea[type='submit']:hover,
+body .box_input .input_cont select[type='submit']:hover,
+body .box_input .input_cont input[type='text'][type='submit']:focus,
+body .box_input .input_cont input[type='date'][type='submit']:focus,
+body .box_input .input_cont input[type='submit'][type='submit']:focus,
+body .box_input .input_cont textarea[type='submit']:focus,
+body .box_input .input_cont select[type='submit']:focus {
   background-color: #009688;
+}
+body .box_input .input_cont textarea {
+  height: 150px;
 }
 body #sidebar-menu .menu_section {
   float: left;

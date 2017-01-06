@@ -17,6 +17,77 @@ body{
         }
     }
     
+    &#edit{
+        
+        #edit_elem{
+            
+            @media (max-width: 768px){
+                 
+                table.table{
+                    display:block;
+                    
+                    tr{
+                        float:left;
+                        width:100%;
+                        display:block;
+                        border:none;
+                        
+                        td{
+                            float:left;
+                            width:100%;
+                            padding:5px 0;
+                            border:none;
+                            
+                            p{
+                                padding:0 5%;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            td{
+                vertical-align:middle;
+                border:none;
+            }
+            
+            tr td:first-child{
+               
+                width:20%;
+                font-weight: 700;
+                text-transform: uppercase;
+                
+                @media (max-width: 768px){
+                    width:100%;
+                    padding:10px 0;
+                }
+            }
+            
+            .box_input{
+                
+                .input_cont{
+                    
+                    input, textarea{
+                        border:1px solid #ddd;
+                    }
+                    
+                }
+                
+                &.submit{
+                    
+                    input{
+                        float:right;
+                    }
+                }
+            }            
+        }
+        
+        
+        .x_title{
+
+            border-bottom:none;
+        }
+    }
     .contieni{
         
         background-color:#F5F5F5;
@@ -85,13 +156,37 @@ body{
             font-size:14px;
             color:#212121;
         }
+        
         .input_cont{
             
             border:none;
             outline:none;
             color:#FFF;
+            padding:0;
+            margin:0;
             
-            input{
+            .select2-selection__rendered{
+                
+                &:hover{
+                    color: #009688;
+                }
+            }
+            
+            .radios{
+                
+                label{
+                    padding:0 5px;
+                    font-size:13px;
+                    color:#000;
+                    font-weight: normal;
+                    
+                    &:hover{
+                        color: #009688;
+                    }
+                }
+            }
+            
+            input[type='text'], input[type='date'], input[type='submit'], textarea, select{
                 
                 color:#212121;
                 
@@ -122,6 +217,10 @@ body{
                         background-color: #009688;
                     }
                 }
+            }
+            
+            textarea{
+                height:150px;
             }
         }
     }

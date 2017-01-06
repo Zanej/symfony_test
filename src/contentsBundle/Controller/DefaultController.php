@@ -4,6 +4,7 @@ namespace contentsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -74,7 +75,7 @@ class DefaultController extends Controller
             if (!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                 echo json_encode(array("error"=>"Utente inesistente o password non corretta"));
                 exit;
-                //return $this->loginAction();            
+                //return $this->loginAction();
             }else{
                 echo json_encode(array("success"=>"Login effettuato con successo"));
                 exit;
@@ -138,13 +139,135 @@ class DefaultController extends Controller
         
         
     }
-    
-    public function cambiaStatoAction($sezione, $id_content){
-        /**
-         * @todo Tutto
-         */
+    /**
+     * Cambia stato all'elemento selezionato
+     * @param integer $sezione id sezione
+     * @param integer $id_content id content
+     */
+    public function cambiaStatoAction($sezione, $id_content, $stato = 1){
+        
+        //Check utente loggato
+        $utente = $this->getUserLogged();    
+        
+        if($utente === false)
+            exit(json_encode(array("error"=>"Not logged")));
+        
+        //Trovo le sezioni abilitate
+        $sez_arr = $this->getSezioniGruppi();
+        
+        $sez_sel = array();
+        
+        $trovato = false;
+        
+        foreach($sez_arr["sezioni"] as $ks => $vs){
+            
+            if($vs->getIdSezione() == $sezione){
+                
+                $sez_sel = $vs;
+                $trovato = true;
+                break;
+            }            
+        }
+        
+        if(!$trovato)
+            exit(json_encode(array("error"=>"Not authorized")));
+        
+        //Trovo il bundle
+        $bundle = $sez_sel->getBundle() ? $sez_sel->getBundle() : "contentsBundle:".$sez_sel->getTabella();
+        
+        //Trovo il repository
+        $rep = $this->getDoctrine()->getRepository($bundle);
+        
+        //Trovo l'elemento
+        $elem = $rep->findOneBy(array($sez_sel->getKeyField()=>$id_content));
+        
+        if(!is_null($elem)){
+            
+            $elem->setStato($stato);
+            //            $elem->persist();
+            
+            $em = $this->getDoctrine()->getManager();
+
+            // tells Doctrine you want to (eventually) save the Product (no queries yet)
+            $em->persist($elem);
+            
+            // actually executes the queries (i.e. the INSERT query)
+            $em->flush();
+            
+            $href = $stato == 1 ? ("/articms/lock/".$sezione."/".$id_content) : ("/articms/unlock/".$sezione."/".$id_content);
+            exit(json_encode(array("success"=>"true","stato"=>$stato,"href"=>$href)));
+            
+        }else{
+            exit(json_encode(array("error"=>"Not authorized")));
+        }
+        
     }
     
+    /**
+     * Genera il form di modifica di un content
+     * @param integer $sezione id sezione
+     * @param integer $id_content id content
+     * @return render
+     */
+    public function editAction($sezione, $id_content){
+        //Check utente loggato
+        $utente = $this->getUserLogged();    
+        
+        if($utente === false)
+            exit(json_encode(array("error"=>"Not logged")));
+        
+        //Trovo le sezioni abilitate
+        $sez_arr = $this->getSezioniGruppi();
+        
+        $sez_sel = array();
+        
+        $trovato = false;
+        
+        foreach($sez_arr["sezioni"] as $ks => $vs){
+            
+            if($vs->getIdSezione() == $sezione){
+                
+                $sez_sel = $vs;
+                $trovato = true;
+                break;
+            }            
+        }
+        
+        if(!$trovato)
+            exit(json_encode(array("error"=>"Not authorized")));
+        
+                
+        
+        //Trovo l'elemento
+        $parametri_sezione = $this->trovaContenuti($sez_sel,array($sez_sel->getKeyField()=>$id_content));
+        
+        if(!is_null($parametri_sezione['record']) && is_array($parametri_sezione['record']) && count($parametri_sezione['record']) > 0){
+            
+            $elem = $parametri_sezione['record'][0];
+            
+            $arr_passa = array(
+                "sezioni_gruppi"=>$sez_arr['sezioni_gruppi'] , 
+                "sezioni_gruppi_sez"=>$sez_arr['sezioni_gruppi_sez'],
+                "user"=>self::$user,
+                "sez_sel"=>$sez_sel,
+                "elem"=>$elem,
+                "campi_lista"=>$parametri_sezione["lista"],
+                "campi"=>$parametri_sezione["campi"],
+                "collegati"=>$parametri_sezione["collegati"]
+            );
+
+
+            return $this->render("contentsBundle:Default:edit.html.twig", 
+                    $arr_passa
+            );
+        }
+    }
+    
+    public function editFormAction($sezione, $id_content){
+        
+        $request = Request::createFromGlobals();
+        var_dump($request->request->all());
+    }
     /**
      * Restituisce l'utente loggato se presente, o FALSE se non sono presenti utenti loggati     
      */
@@ -213,12 +336,13 @@ class DefaultController extends Controller
     /**
      * Trova i contenuti per la sezione selezionata
      * @param confSezioni $sezione
+     * @param array $filtri filtri
      * @return array
      */
-    public function trovaContenuti($sezione){
+    public function trovaContenuti($sezione, $filtri = array()){
         
         $controller = new sezioniController($this->getContainer(), $sezione);        
         
-        return $controller->getConfTables();
+        return $controller->getConfTables($filtri);
     }
 }

@@ -10,11 +10,32 @@ contents_list:
     requirements:
         sezione: '\d+'
 contents_lock:
-    path:     /articms/lock/{sezione}/{$id_content}/
+    path:     /articms/lock/{sezione}/{id_content}/
     defaults: { _controller: contentsBundle:Default:cambiaStato , stato: 0}
+    requirements:
+        sezione: '\d+'
+        id_content: '\d+'
+        
+contents_edit:
+    path:     /articms/edit/{sezione}/{id_content}/
+    defaults: { _controller: contentsBundle:Default:edit}
+    requirements:
+        sezione: '\d+'
+        id_content: '\d+'
+
+contents_form_edit:
+    path:     /articms/edit_form/{sezione}/{id_content}/
+    defaults: { _controller: contentsBundle:Default:editForm}
+    requirements:
+        sezione: '\d+'
+        id_content: '\d+'
+        
 contents_unlock:
-    path:     /articms/unlock/{sezione}/{$id_content}/
+    path:     /articms/unlock/{sezione}/{id_content}/
     defaults: { _controller: contentsBundle:Default:cambiaStato , stato: 1}
+    requirements:
+        sezione: '\d+'
+        id_content: '\d+'
     
 user_img:
 #    path:   /articms/admin/users_images/dennis_zanetti-100_100_1/
