@@ -1,0 +1,76 @@
+{% set page='list' %}
+{% extends "contentsBundle:Default:default.html.twig" %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>
+                        Lista {{sez_sel.titolo}}
+                    </h2>
+                </div><!--x_title-->
+                <div class="clearfix"></div>
+                <div class="x_content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            {% for campo in campi_lista %}
+                            
+                                <th {% if campo.getLengthDetail() > 0 %} style="width:{{campo.getLengthDetail()}}%" {% endif %}>
+                                    {{campo.getName()|upper}}
+                                </th>                            
+                            {% endfor %}
+                                <th>
+                                    ACTIONS
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for oggetto in lista%}
+                                <tr>
+                                {% for campo in campi_lista %}
+                                    <td>
+                                        <p>
+                                        {% set var_to_s = oggetto.get(campo.getName()) %}
+                                        {% if var_to_s.timestamp is defined %}
+                                            {{var_to_s|date("d/m/Y")}}
+                                        {% elseif var_to_s.valore is defined and var_to_s.stampa is defined %}
+                                            {{var_to_s.stampa}}
+                                        {% else %}
+                                            {{var_to_s}}
+                                        {% endif %}
+                                        </p>
+                                    </td>
+                                {% endfor %}
+                                    <td>
+                                        
+                                        {% if sez_sel.getEdit() == 1 %}
+                                        <a href="/articms/edit/{{sez_sel.getIdSezione()}}/{{oggetto.getId()}}/" class="btn btn-round btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        {% endif %}
+                                        {% if sez_sel.getStatoAbilitato() == 1 and oggetto.getStato() == 1 %}
+                                            <a href="/articms/lock/{{sez_sel.getIdSezione()}}/{{oggetto.getId()}}/" class="btn btn-round btn-warning ajax_call">
+                                                <i class="fa fa-lock"></i>
+                                            </a>
+                                        {% elseif sez_sel.getStatoAbilitato() == 1 %}
+                                            <a href="/articms/unlock/{{sez_sel.getIdSezione()}}/{{oggetto.getId()}}/" class="btn btn-round btn-success ajax_call">
+                                                <i class="fa fa-unlock"></i>
+                                            </a>
+                                        {% endif %}
+                                            
+                                        {% if sez_sel.getRemove() == 1 %}
+                                        <a href="/articms/remove/{{sez_sel.getIdSezione()}}/{{oggetto.getId()}}/" class="btn btn-round btn-danger">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div><!--x_content-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
