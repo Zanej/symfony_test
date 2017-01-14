@@ -97,6 +97,42 @@ $(document).ready(function() {
             enterMode: CKEDITOR.ENTER_BR
         });
     });
+    
+    $(document).on( "submit", "#edit_elem", function(e){
+        
+        var form = $(this);
+        
+        $.ajax({
+            url:form.prop("action"),
+            data:form.serialize(),
+            dataType:"json",
+            type:"POST",
+            success:function(data){
+                               
+                $("#velina_form").addClass("mostra");
+                $("#velina_form").find("p").html(data.message);
+            },
+            error:function(data){
+                $("#velina_form").addClass("mostra");
+                $("#velina_form").find("p").html("Network error, contact us");
+            }
+        });
+        return false;
+    });
+    
+    $(document).on("click", "#velina_form .close", function(e){
+        $("#velina_form").removeClass("mostra");
+        $("#velina_form").find("p").html("");
+    });
+    
+    $(document).on("click", "#velina_form .background_cont", function(e){
+        
+        if( $((e).target).parents(".background_cont").length == 0){
+            $("#velina_form").removeClass("mostra");
+            $("#velina_form").find("p").html("");
+        }
+            
+    });
 });
 
 //bootstrap-wysiwyg

@@ -19,6 +19,88 @@ body{
     
     &#edit{
         
+        .main_container{
+            
+            
+            position:relative;
+            float:left;
+            width: 100%;
+            
+            #velina_form{
+                z-index: -1;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: none;
+                background-color:rgba(0, 0, 0, 0.7);                
+                &.mostra{
+                    z-index: 999;
+                    display: block;
+                }
+                
+                .background_cont{
+                    float:left;
+                    width:100%;   
+                    height:100%;
+                    
+                    .cont_all{
+                        
+                        margin:0 auto;                        
+                        width:300px;
+                        height: auto;
+                        max-height: 500px;
+                        min-height: 100px;
+                        margin-top: 50px;                        
+                        
+                        
+                        .cont_table{
+                            
+                            padding:20px 0;
+                            float:left;
+                            width:100%;                            
+                            background-color:#FFF;
+                            border-radius: 20px;
+                            -webkit-border-radius:20px;
+                            -moz-border-radius:20px;
+                            position:relative;
+                            
+                            .close{
+                                position:absolute;                                
+                                top:-10px;
+                                right:-10px;
+                                z-index: 1000;
+                                color:#FFF;
+                                background-color: #F44336;
+                                padding:5px;
+                                opacity:1;
+                                border-radius: 5px;
+                                -webkit-border-radius: 5px;
+                                -moz-border-radius: 5px;
+                                
+                                &:before{
+                                    content:"X";                                    
+                                }
+                            }
+                            
+                            .cont_p{
+                                
+                                float:left;
+                                width:100%; 
+                                
+                                p{
+                                    margin:10px;                                        
+                                    text-align: center;
+                                    color: #000;
+                                }                                
+                            }
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
+        
         #edit_elem{
             
             @media (max-width: 768px){
@@ -186,7 +268,7 @@ body{
                 }
             }
             
-            input[type='text'], input[type='date'], input[type='submit'], textarea, select{
+            input[type='text'], input[type='date'], input[type='submit'], input[type='email'], input[type='password'], textarea, select{
                 
                 color:#212121;
                 

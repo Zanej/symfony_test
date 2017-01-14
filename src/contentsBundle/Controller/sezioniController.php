@@ -26,7 +26,14 @@ class sezioniController extends Controller{
         
     }
     
-    public function getConfTables($filtri = array(), $page = 1){
+    /**
+     * Gestisce gli elementi della sezione, inn base ai filtri
+     * @param array $filtri
+     * @param integer $page se settata, viene utilizzato per il paginatore in lista
+     * @param integer $limit se settato, viene utilizzato per limitare la query
+     * @return array
+     */
+    public function getConfTables($filtri = array(), $page = NULL, $limit= NULL){
                 
         //Repository conf table
         $repository_conf = $this->getDoctrine()->getRepository("contentsBundle:confTable");
@@ -78,8 +85,20 @@ class sezioniController extends Controller{
         
         $filtri["idSezione"] = $this->sezione->getIdSezione();
         
-        $filtra = $repository_b->findBy(
+        if( isset($page)){
+            
+            $filtra = $repository_b->findBy(
                 $filtri, array("ordine"=>"ASC"), $this->sezione->getPerPage(), ($page - 1) * $this->sezione->getPerPage());
+        }elseif(isset($limit)){
+            
+            $filtra = $repository_b->findBy(
+                $filtri, array("ordine"=>"ASC"), $limit);
+        }else{
+            
+            $filtra = $repository_b->findBy(
+                $filtri, array("ordine"=>"ASC"));
+        }
+        
         
         
         foreach($filtra as $kt => $vt){
@@ -178,6 +197,9 @@ class sezioniController extends Controller{
                     $nomeFunzione = "get".str_replace(" ","",ucwords(str_replace("_"," ",$vc->getName())));
                     $nomeFunzioneOrig = "get".str_replace(" ","",ucwords(str_replace("_"," ",$kc)));
                     
+                    $nomeFunzioneSet = "set".str_replace(" ","",ucwords(str_replace("_"," ",$vc->getName())));
+                    $nomeFunzioneSetOrig = "set".str_replace(" ","",ucwords(str_replace("_"," ",$kc)));
+                    
                     if($nomeFunzione != $nomeFunzioneOrig && $kc != $vc->getName()){
                         //Creo la funzione nuova (vedi la definizione dentro la classe contents)
 
@@ -195,11 +217,12 @@ class sezioniController extends Controller{
                             return $this->$nomeFunzioneOrig();
                         };
 
-                        if(!isset($vt->nome_metodi))
-                            $vt->nome_metodi = array();
+                        if(!isset($vt->metodi))
+                            $vt->metodi = array();
 
                         //Assegno ai metodi, in modo da poter usare il get
                         $vt->metodi[$nomeFunzione] = $nomeFunzioneOrig;         
+                        $vt->metodi[$nomeFunzioneSet] = $nomeFunzioneSetOrig;         
                         
                     }
                     //Ottengo il tipo della variabile, in caso mi servisse
@@ -211,6 +234,7 @@ class sezioniController extends Controller{
                                   
                     $vc->typeOfField = $em->getClassMetaData($bundle)->getTypeOfField($nomeCampoOrig);
                     
+                    $vt->campi_real[$vc->getName()] = $vc->getField();
                 }
                 
                 //Creo anche la funzione get
@@ -228,6 +252,22 @@ class sezioniController extends Controller{
                     return null;                    
                 };
                 
+                //Creo la funzione set
+                
+                $vt->set = function($label, $set){
+                    
+                    $nomeFunzione = "set".str_replace(" ","",ucwords(str_replace("_"," ",$label)));
+                    if(isset($this->metodi[$nomeFunzione])){
+                        
+                        return $this->$nomeFunzione( $set );
+                    }elseif( method_exists($this, $nomeFunzione)){
+                        
+                        return $this->$nomeFunzione ( $set);
+                    }
+                    
+                    return null;                    
+                };
+                                
             }
         
             $filtra[$kt] = $vt;
@@ -252,4 +292,16 @@ class sezioniController extends Controller{
         );
     }
     
+    
+    /**
+     * @TODO
+     * @param type $sezione
+     * @param type $rif_box
+     */
+    public function getBoxSezione($sezione, $rif_box = NULL) {
+        
+        $repository_conf = $this->getDoctrine()->getRepository('conf_sezioni_box_configRepository');
+        $repository_box = $this->getDoctrine()->getRepository('conf_sezioni_boxRepository');
+        
+    }
 }

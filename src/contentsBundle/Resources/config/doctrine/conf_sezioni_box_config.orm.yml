@@ -1,0 +1,46 @@
+contentsBundle\Entity\conf_sezioni_box_config:
+    type: entity
+    table: null
+    repositoryClass: contentsBundle\Repository\conf_sezioni_box_configRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        rifBox:
+            type: integer
+            column: rif_box
+        titolo:
+            type: string
+            length: 255
+        sottotitolo:
+            type: text
+            nullable: true
+        numBox:
+            type: integer
+            column: num_box
+        tipologia:
+            type: string
+            length: '255'
+        titoloSottobox:
+            type: string
+            length: '255'
+            column: titolo_sottobox
+        ordine:
+            type: integer
+            nullable: true
+        parametri:
+            type: json_array
+            nullable: true
+    manyToOne:
+        idSezione:
+            targetEntity: confSezioni
+            joinColumn:
+                name: id_sezione
+                referencedColumnName: id_sezione
+    uniqueConstraints:
+        sezione_rifbox:
+            columns: id_sezione,rif_box
+    lifecycleCallbacks: {  }

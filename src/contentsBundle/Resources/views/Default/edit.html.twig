@@ -1,8 +1,9 @@
 {% set page='edit' %}
 {% extends "contentsBundle:Default:default.html.twig" %}
 {% block content %}
-    <div class="row">
+    <div class="row">              
         <div class="col-sm-12">
+            
             <div class="x_panel">
                 <div class="x_title">
                     <h2>
@@ -10,83 +11,83 @@
                     </h2>
                 </div><!--x_title-->
                 <div class="clearfix"></div>
-                <form action="/articms/edit_form/{{sez_sel.getIdSezione()}}/{{elem.get(sez_sel.getKeyField())}}/" id="edit_elem" method="POST">
-                <div class="x_content">
-                    <table class="table">                        
-                        
-                        {% for campo in campi %}
-                            {% if "HIDDEN" not in campo.getComment() %}
-                                <tr>
-                                    <td>
-                                        <p>
-                                        {{campo.getName()|upper}}
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <div class="box_input">
-                                            <div class="input_cont">
-                                            {% set var_to_s = elem.get(campo.getName()) %}
-                                            
-                                            {% if var_to_s.timestamp is defined %}
-                                                <input type="date" class="datepicker" name="{{campo.getName()}}" value="{{var_to_s|date("Y-m-d")}}"/>                                                
-                                            {% elseif campo.typeOfField == "text" %}
-                                                <textarea name="{{campo.getName()}}" class="plugged" id="{{campo.getName()}}">{{var_to_s}}</textarea>
-                                            {% elseif campo.typeOfField == "boolean" %}
-                                                <div class="radios">
-                                                    <label for="{{campo.getName()}}_0">
-                                                        Attivo
-                                                    </label>
-                                                    
-                                                    <input type="radio" class="flat icheck" id="{{campo.getName()}}_0" name="{{campo.getName()}}" value="1" {% if elem.getStato() == 1  %} checked {% endif %}/>
-                                                    
-                                                    <label for="{{campo.getName()}}_1">
-                                                        Non attivo
-                                                    </label>
-                                                    
-                                                    <input type="radio" class="flat icheck" id="{{campo.getName()}}_1" name="{{campo.getName()}}" value="0" {% if elem.getStato() == 0  %} checked {% endif %}/>
-                                                </div>
-                                            {% elseif var_to_s.valore is defined and var_to_s.stampa is defined %}
-                                                
-                                                {% if campo.tuttiCollegati|length == 0 %}
-                                                    <p>
-                                                        Nessun record disponibile
-                                                    </p>
+                <form action="/articms/edit_form/{{sez_sel.getIdSezione()}}/{{elem.get(sez_sel.getKeyField())}}/" id="edit_elem" method="POST">                    
+                    <div class="x_content">
+                        <table class="table">                        
+
+                            {% for campo in campi %}
+                                {% if "HIDDEN" not in campo.getComment() %}
+                                    <tr>
+                                        <td>
+                                            <p>
+                                            {{campo.getName()|upper}}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <div class="box_input">
+                                                <div class="input_cont">
+                                                {% set var_to_s = elem.get(campo.getName()) %}
+
+                                                {% if var_to_s.timestamp is defined %}
+                                                    <input type="date" class="datepicker" name="{{campo.getName()}}" value="{{var_to_s|date("Y-m-d")}}"/>                                                
+                                                {% elseif campo.typeOfField == "text" %}
+                                                    <textarea name="{{campo.getName()}}" class="plugged" id="{{campo.getName()}}">{{var_to_s}}</textarea>
+                                                {% elseif campo.typeOfField == "boolean" %}
+                                                    <div class="radios">
+                                                        <label for="{{campo.getName()}}_0">
+                                                            Attivo
+                                                        </label>
+
+                                                        <input type="radio" class="flat icheck" id="{{campo.getName()}}_0" name="{{campo.getName()}}" value="1" {% if elem.getStato() == 1  %} checked {% endif %}/>
+
+                                                        <label for="{{campo.getName()}}_1">
+                                                            Non attivo
+                                                        </label>
+
+                                                        <input type="radio" class="flat icheck" id="{{campo.getName()}}_1" name="{{campo.getName()}}" value="0" {% if elem.getStato() == 0  %} checked {% endif %}/>
+                                                    </div>
+                                                {% elseif var_to_s.valore is defined and var_to_s.stampa is defined %}
+
+                                                    {% if campo.tuttiCollegati|length == 0 %}
+                                                        <p>
+                                                            Nessun record disponibile
+                                                        </p>
+                                                    {% else %}
+
+                                                        <select name="{{campo.getName}}" class="select2_single" id="{{campo.getName()}}">
+                                                        {%for key_coll,collegato in campo.tuttiCollegati %}
+                                                            <option value="{{key_coll}}" {% if key_coll == var_to_s.valore %} selected {% endif %}>
+                                                                {{collegato}}
+                                                            </option>
+                                                        {% endfor %}
+                                                        </select>
+                                                    {% endif %}
+                                                    {#{var_to_s.stampa}#}
                                                 {% else %}
-                                                    
-                                                    <select name="{{campo.getName}}" class="select2_single" id="{{campo.getName()}}">
-                                                    {%for key_coll,collegato in campo.tuttiCollegati %}
-                                                        <option value="{{key_coll}}" {% if key_coll == var_to_s.valore %} selected {% endif %}>
-                                                            {{collegato}}
-                                                        </option>
-                                                    {% endfor %}
-                                                    </select>
+                                                    <input type="text" name="{{campo.getName()}}" value="{{var_to_s}}"/>                                                
                                                 {% endif %}
-                                                {#{var_to_s.stampa}#}
-                                            {% else %}
-                                                <input type="text" name="{{campo.getName()}}" value="{{var_to_s}}"/>                                                
-                                            {% endif %}
+                                                </div>
                                             </div>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <input type="hidden" name="{{campo.getName()}}" value="{{elem.get(campo.getName())}}"/>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if campi|length > 0 %}
+                            <tr>
+                                <td colspan="2">
+                                    <div class="box_input submit">
+                                        <div class="input_cont">
+                                            <input type="submit" class="btn btn-success" value="Salva"/>
                                         </div>
-                                    </td>
-                                </tr>
-                            {% else %}
-                                <input type="hidden" name="{{campo.getName()}}" value="{{elem.get(campo.getName())}}"/>
-                            {% endif %}
-                        {% endfor %}
-                        
-                        {% if campi|length > 0 %}
-                        <tr>
-                            <td colspan="2">
-                                <div class="box_input submit">
-                                    <div class="input_cont">
-                                        <input type="submit" class="btn btn-success" value="Salva"/>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endif %}
-                    </table>
-                </div><!--x_content-->
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </div><!--x_content-->                
                 </form>
             </div>
         </div>

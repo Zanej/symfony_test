@@ -393,4 +393,120 @@ class confSezioni
     {
         return $this->per_page;
     }
+    /**
+     * @var boolean
+     */
+    private $edit;
+
+    /**
+     * @var boolean
+     */
+    private $remove;
+
+    /**
+     * @var boolean
+     */
+    private $insert;
+
+    /**
+     * @var boolean
+     */
+    private $stato_abilitato;
+
+
+    /**
+     * Set edit
+     *
+     * @param boolean $edit
+     *
+     * @return confSezioni
+     */
+    public function setEdit($edit)
+    {
+        $this->edit = $edit;
+
+        return $this;
+    }
+
+    /**
+     * Get edit
+     *
+     * @return boolean
+     */
+    public function getEdit()
+    {
+        return $this->edit;
+    }
+
+    /**
+     * Set remove
+     *
+     * @param boolean $remove
+     *
+     * @return confSezioni
+     */
+    public function setRemove($remove)
+    {
+        $this->remove = $remove;
+
+        return $this;
+    }
+
+    /**
+     * Get remove
+     *
+     * @return boolean
+     */
+    public function getRemove()
+    {
+        return $this->remove;
+    }
+
+    /**
+     * Set insert
+     *
+     * @param boolean $insert
+     *
+     * @return confSezioni
+     */
+    public function setInsert($insert)
+    {
+        $this->insert = $insert;
+
+        return $this;
+    }
+
+    /**
+     * Get insert
+     *
+     * @return boolean
+     */
+    public function getInsert()
+    {
+        return $this->insert;
+    }
+
+    /**
+     * Set statoAbilitato
+     *
+     * @param boolean $statoAbilitato
+     *
+     * @return confSezioni
+     */
+    public function setStatoAbilitato($statoAbilitato)
+    {
+        $this->stato_abilitato = $statoAbilitato;
+
+        return $this;
+    }
+
+    /**
+     * Get statoAbilitato
+     *
+     * @return boolean
+     */
+    public function getStatoAbilitato()
+    {
+        return $this->stato_abilitato;
+    }
 }

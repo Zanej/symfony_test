@@ -13,6 +13,71 @@ body#login {
 body#login .right_col {
   min-height: auto !important;
 }
+body#edit .main_container {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+body#edit .main_container #velina_form {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+body#edit .main_container #velina_form.mostra {
+  z-index: 999;
+  display: block;
+}
+body#edit .main_container #velina_form .background_cont {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+body#edit .main_container #velina_form .background_cont .cont_all {
+  margin: 0 auto;
+  width: 300px;
+  height: auto;
+  max-height: 500px;
+  min-height: 100px;
+  margin-top: 50px;
+}
+body#edit .main_container #velina_form .background_cont .cont_all .cont_table {
+  padding: 20px 0;
+  float: left;
+  width: 100%;
+  background-color: #FFF;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  position: relative;
+}
+body#edit .main_container #velina_form .background_cont .cont_all .cont_table .close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 1000;
+  color: #FFF;
+  background-color: #F44336;
+  padding: 5px;
+  opacity: 1;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+body#edit .main_container #velina_form .background_cont .cont_all .cont_table .close:before {
+  content: "X";
+}
+body#edit .main_container #velina_form .background_cont .cont_all .cont_table .cont_p {
+  float: left;
+  width: 100%;
+}
+body#edit .main_container #velina_form .background_cont .cont_all .cont_table .cont_p p {
+  margin: 10px;
+  text-align: center;
+  color: #000;
+}
 @media (max-width: 768px) {
   body#edit #edit_elem table.table {
     display: block;
@@ -139,6 +204,8 @@ body .box_input .input_cont .radios label:hover {
 body .box_input .input_cont input[type='text'],
 body .box_input .input_cont input[type='date'],
 body .box_input .input_cont input[type='submit'],
+body .box_input .input_cont input[type='email'],
+body .box_input .input_cont input[type='password'],
 body .box_input .input_cont textarea,
 body .box_input .input_cont select {
   color: #212121;
@@ -152,11 +219,15 @@ body .box_input .input_cont select {
 body .box_input .input_cont input[type='text']:not([type='submit']):hover,
 body .box_input .input_cont input[type='date']:not([type='submit']):hover,
 body .box_input .input_cont input[type='submit']:not([type='submit']):hover,
+body .box_input .input_cont input[type='email']:not([type='submit']):hover,
+body .box_input .input_cont input[type='password']:not([type='submit']):hover,
 body .box_input .input_cont textarea:not([type='submit']):hover,
 body .box_input .input_cont select:not([type='submit']):hover,
 body .box_input .input_cont input[type='text']:not([type='submit']):focus,
 body .box_input .input_cont input[type='date']:not([type='submit']):focus,
 body .box_input .input_cont input[type='submit']:not([type='submit']):focus,
+body .box_input .input_cont input[type='email']:not([type='submit']):focus,
+body .box_input .input_cont input[type='password']:not([type='submit']):focus,
 body .box_input .input_cont textarea:not([type='submit']):focus,
 body .box_input .input_cont select:not([type='submit']):focus {
   outline: 2px solid #009688;
@@ -164,6 +235,8 @@ body .box_input .input_cont select:not([type='submit']):focus {
 body .box_input .input_cont input[type='text'][type='submit'],
 body .box_input .input_cont input[type='date'][type='submit'],
 body .box_input .input_cont input[type='submit'][type='submit'],
+body .box_input .input_cont input[type='email'][type='submit'],
+body .box_input .input_cont input[type='password'][type='submit'],
 body .box_input .input_cont textarea[type='submit'],
 body .box_input .input_cont select[type='submit'] {
   width: auto;
@@ -174,11 +247,15 @@ body .box_input .input_cont select[type='submit'] {
 body .box_input .input_cont input[type='text'][type='submit']:hover,
 body .box_input .input_cont input[type='date'][type='submit']:hover,
 body .box_input .input_cont input[type='submit'][type='submit']:hover,
+body .box_input .input_cont input[type='email'][type='submit']:hover,
+body .box_input .input_cont input[type='password'][type='submit']:hover,
 body .box_input .input_cont textarea[type='submit']:hover,
 body .box_input .input_cont select[type='submit']:hover,
 body .box_input .input_cont input[type='text'][type='submit']:focus,
 body .box_input .input_cont input[type='date'][type='submit']:focus,
 body .box_input .input_cont input[type='submit'][type='submit']:focus,
+body .box_input .input_cont input[type='email'][type='submit']:focus,
+body .box_input .input_cont input[type='password'][type='submit']:focus,
 body .box_input .input_cont textarea[type='submit']:focus,
 body .box_input .input_cont select[type='submit']:focus {
   background-color: #009688;

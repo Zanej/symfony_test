@@ -1,0 +1,117 @@
+contentsBundle\Entity\box:
+    type: entity
+    table: null
+    repositoryClass: contentsBundle\Repository\boxRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:    
+        rifBox:
+            type: integer
+            nullable: false
+            column: rif_box
+        titolo:
+            type: string
+            length: '255'
+        titolopar:
+            type: text
+            nullable: true
+        titolo2par:
+            type: string
+            length: '255'
+            nullable: true
+        titolo3par:
+            type: string
+            length: '255'
+            nullable: true
+        testo:
+            type: text
+            nullable: true
+        testo2:
+            type: text
+            nullable: true
+        testo3:
+            type: text
+            nullable: true
+        img:
+            type: string
+            length: '255'
+            nullable: true
+        img2:
+            type: string
+            length: '255'
+            nullable: true
+            column: img_2
+        allegato:
+            type: string
+            length: '255'
+            nullable: true
+        stato:
+            type: boolean
+        idCollegato:
+            type: integer
+            nullable: true
+            column: id_collegato
+        idCollegato2:
+            type: integer
+            nullable: true
+            column: id_collegato_2
+        viewportDesktop:
+            type: boolean
+            nullable: true
+        viewportMobile:
+            type: boolean
+            nullable: true
+        link:
+            type: string
+            length: '255'
+            nullable: true
+        titlink:
+            type: string
+            length: 255
+            nullable: true
+        target:
+            type: boolean
+            nullable: true
+        link2:
+            type: string
+            length: 255
+            nullable: true
+        titlink2:
+            type: string
+            length: 255
+            nullable: true
+        target2:
+            type: boolean
+            nullable: true
+        youtubeCode:
+            type: string
+            length: 255
+            nullable: true
+            column: youtube_code
+        vimeoCode:
+            type: string
+            length: 255
+            nullable: true
+            column: vimeo_code
+    manyToOne:
+        idSezione:
+            targetEntity: confSezioni
+            joinColumn:
+                name: id_sezione
+                referencedColumnName: id_sezione
+        idRif:
+            targetEntity: contents
+            joinColumn:
+                name: id_rif
+                referencedColumnName: id
+        idParent:
+            targetEntity: box
+            nullable: true
+            joinColumn:
+                name: id_parent
+                referencedColumnName: id
+    lifecycleCallbacks: {  }
